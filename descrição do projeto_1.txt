@@ -1,0 +1,7 @@
+
+implementar uma conta bancária para um único usuário (desconsiderando nome do banco, numero, titulo, nome, etc)
+de forma que a conta tenha uma operação de saque, deposíto e extrato. Os Saques e os depósitos precisam ser arma
+zenados em uma variável. O limite de saque é de 3 saques diários e cada saque não pode ser maior que 500 reais.
+a operação extrato deve listar todas as operações feitas e exibir o que foi sacado, depositado e o saldo atual da conta   
+
+
