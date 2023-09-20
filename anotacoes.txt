@@ -1,0 +1,33 @@
+função dir() -> exibe todos métodos disponíveis no script no modo interativo.
+função help() -> entra no modo ajuda do python e é possível conseguir informações de classes.
+em python se usa letras maiúsculas para definir que uma variável é do tipo constante
+
+em python o padrão é o snake case: exemplo: nome_da_rua, diferente de java que é camelcase: nomeDaRua
+
+a função print, tem como parâmetro padrão: sep='<algum separador' e end='\n' 
+esses argumentos permitem add um separador diferente e pular ou não uma linha. 
+
+ex: print(nome, idade, sep="#")
+>>> <nome>#<idade>
+
+print(nome, idade, sep="...")  #por padrão sep tem valor "\n"
+print(variavelx)
+
+>>> <nome><idade>...<variavelx>
+
+
+---> if ternário: é uma maneira de enxugar o 'if', e guardar o resultado em uma variável.
+
+por exemplo:
+x = None
+y = ''
+
+status = 'é verdade que none é igual a vazio' if x is y else 'é falso que none é igual a vazio'
+
+print(f'{status} é uma surpresa pra você?')
+
+****conhecendo metodos uteis para string***
+
+interpolação de variaveis
+
+fateamento
