@@ -83,3 +83,8 @@ print(lista)
 
 
 # sorted(): é uma função built-in que serve para ordenar iteráveis, funciona igual ao método sort()
+
+
+
+
+
