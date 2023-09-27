@@ -31,3 +31,7 @@ print(f'{status} é uma surpresa pra você?')
 interpolação de variaveis
 
 fateamento
+
+join - unir 
+
+split - dividir 
