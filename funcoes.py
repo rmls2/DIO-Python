@@ -75,3 +75,51 @@ exibir_poema('Quarta, 27 de setembro de 2023\n', *listaa, **dicio)
 exibir_poema('Quarta, 27 de setembro de 2023\n', 'Era dia', 'mas em mim', 'era noite',
               'era escuro como a madrugada', autor='Robert', ano = 2023)
 
+
+def soma(a, b):
+    return a+b 
+
+def exibir_func(n1,n2, funcao):
+    resultado = funcao(n1,n2)
+
+    print(f'o resultado de {n1} + {n2 } = {resultado}')
+
+
+exibir_func(2,3, soma)
+
+## Variáveis locais e globais 
+
+# variáveis locais: quando o bloco de código for executado, as alterações feitas na variáveis vai aparecer após isso. 
+# variáveis globais: as alterações feitas por um bloco de código de uma função vão continuar após a execução 
+# para dizer que uma variável é global se usa o global na hora de declarar a variável dentro da função 
+# obs: usar variáveis globais não é uma boa prática 
+
+resultado = 5
+
+print(resultado)
+
+def multiplica(a,b):
+    global resultado
+    resultado += a*b
+    return resultado
+
+print(multiplica(5,8))
+
+# note que ao uusar resultado como uma variável global o valor referenciado por ela foi add por aquilo que estava função (o produto de a e b)
+
+valor = 5 
+print(multiplica(valor, 3))
+
+#note que ao passar valor como parâmetro dessa função ela irá multiplica valor * 3 e somar a variável resultado, que agora como é
+# uma variável global armazena o resultado original (5 + (5*8)) e ao chamar multiplica (valor, 3) foi add (3*5) e por tanto o 
+# valor final de resultado é 60  
+
+# ao passar um variável de fora do escopo da função como argumento pra ela, a função pode alterar o seu valor 
+
+lista_teste = [1,3]
+
+def add_elemento_lista(a, lista):
+    lista.append(a)
+    print(lista)
+
+add_elemento_lista(4, lista_teste)
