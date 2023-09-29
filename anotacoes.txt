@@ -35,3 +35,7 @@ fateamento
 join - unir 
 
 split - dividir 
+
+
+--> objetos de primeira classe: em python tudo é um objeto, inclusive funções por ser possível passar uma função como parâmetro de uma 
+outra função, atriburir a variáveis, usá-las como valores em estrutura de dados e usar como valor de retorno para uma função
