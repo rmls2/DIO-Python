@@ -1,15 +1,11 @@
-class Numero:
-    def __init__(self) -> None:
-        self.numero = 2
+i = 0
 
-x = Numero()
+def contar():
+    global i
+    i += 1
+    return i
 
-y = Numero()
+contar()
+contar()
 
-x = y #dois objetos nesse caso só oassam a serem 
-
-if x is y:
-    print('x é igual a y')
-
-else: 
-    print('não sao iguais otario')
+print(contar())

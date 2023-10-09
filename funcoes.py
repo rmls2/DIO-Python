@@ -51,7 +51,7 @@ definir_carro(marca='Fiat', ano= 2006, nome='Palio', placa= 'abc1234')
 # usando um dicionario para nomear argumentos: 
 definir_carro(**{'ano': 2006, 'nome': 'Palio', 'marca': 'Fiat', 'placa': 'abc1234'})
 
-## *Args e **Kwargs: quando são passadados como parâmetro significa que podemos passar uma lista com um numero de itens indefinidos 
+## *Args e **Kwargs: quando são passadados como parâmetro significa que podemos passar uma lista ou tupla com um numero de itens indefinidos 
 ## e podemos usar um dicionário com o numero de itens indefinidos respectivamente. 
 
 def exibir_poema(data, *args, **kwargs):
