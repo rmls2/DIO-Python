@@ -11,7 +11,8 @@ função extrato -> vai receber argumentos posicionais e nomeados. posicionais: 
 
 funções extras: listas usuario, listar contas, inativar conta. 
 
-função criar usuario: o programa deve armazenar os usuários em uma lista, um usuário é composto por: nome, data de nascimento, cpf e endereço.  O endereço é uma string com logradouro - bairro - cidade/sigla do estado. O cpf deve ser armazenado somente os numeros do cpf. Não se pode cadastrar dois usuarios com o mesmo cpf. 
+função criar usuario: o programa deve armazenar os usuários em uma lista, um usuário é composto por: nome, data de nascimento, cpf e endereço. 
+ O endereço é uma string com logradouro - bairro - cidade/sigla do estado. O cpf deve ser armazenado somente os numeros do cpf. Não se pode cadastrar dois usuarios com o mesmo cpf. 
 
 função criar conta corrente: uma conta é composta  por: agencia, numero da conta e usuário. O número da conta é sequencial, iniciando em 1.  O numero da agencia é fixo "0001". O usuário pode ter mais de uma conta, mas uma conta pertence somente a um usuário. Um usuário pode ter varias contas.
 
