@@ -58,16 +58,21 @@ def criar_conta_corrente():
 #     pass
 
 
-saldo_conta = 800 
+saldo_conta = 800
 
 kwargs = {'valor_saque': 10, 'extrato': extrato_conta,'limite': limite_conta, 'limite_saques': LIMITE_SAQUES}
-
-print(saldo_conta, numero_saques_conta, LIMITE_SAQUES)
-
-
 x = sacar(**kwargs)
+print(x)
+kwargs = {'valor_saque': 15, 'extrato': extrato_conta,'limite': limite_conta, 'limite_saques': LIMITE_SAQUES}
 x = sacar(**kwargs)
-print(extrato_conta)
+print(x)
+kwargs = {'valor_saque': 5, 'extrato': extrato_conta,'limite': limite_conta, 'limite_saques': LIMITE_SAQUES}
+x = sacar(**kwargs)
+print(x)
+kwargs = {'valor_saque': 5, 'extrato': extrato_conta,'limite': limite_conta, 'limite_saques': LIMITE_SAQUES}
+x = sacar(**kwargs)
+print(x)
 
-print(saldo_conta, numero_saques_conta, LIMITE_SAQUES)
+
+
 
