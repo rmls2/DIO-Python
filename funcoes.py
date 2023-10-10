@@ -89,7 +89,7 @@ exibir_func(2,3, soma)
 
 ## Variáveis locais e globais 
 
-# variáveis locais: quando o bloco de código for executado, as alterações feitas na variáveis vai aparecer após isso. 
+# variáveis locais: quando o bloco de código for executado, as alterações feitas na variáveis vai desaparecer após isso. 
 # variáveis globais: as alterações feitas por um bloco de código de uma função vão continuar após a execução 
 # para dizer que uma variável é global se usa o global na hora de declarar a variável dentro da função 
 # obs: usar variáveis globais não é uma boa prática 
@@ -105,7 +105,7 @@ def multiplica(a,b):
 
 print(multiplica(5,8))
 
-# note que ao uusar resultado como uma variável global o valor referenciado por ela foi add por aquilo que estava função (o produto de a e b)
+# note que ao usar resultado como uma variável global o valor referenciado por ela foi add por aquilo que estava função (o produto de a e b)
 
 valor = 5 
 print(multiplica(valor, 3))
