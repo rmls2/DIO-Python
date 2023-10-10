@@ -7,19 +7,45 @@ menu = """
 
 => """
 
-saldo = 0
-limite = 500
-extrato = ""
-numero_saques = 0
+saldo_conta = 0
+limite_conta = 500
+extrato_conta = []
+numero_saques_conta = 0
 LIMITE_SAQUES = 3
 
-def sacar(saldo= saldo, valor = 0, extrato = extrato, limite = limite, numero_saques = numero_saques, limite_saques = LIMITE_SAQUES):
+def sacar(valor_saque, extrato, limite, limite_saques):
+    global saldo_conta, numero_saques_conta
+
+    excedeu_saldo = valor_saque > saldo_conta
+
+    excedeu_limite = valor_saque > limite
+
+    excedeu_saques = numero_saques_conta >= limite_saques
+    
+    
+    if excedeu_saldo:
+        print("Operação falhou! Você não tem saldo_conta suficiente.")
+
+    elif excedeu_limite:
+        print("Operação falhou! O valor_saque do saque excede o limite.")
+
+    elif excedeu_saques:
+        print("Operação falhou! Número máximo de saques excedido.")
+
+    elif valor_saque > 0:
+        saldo_conta -= valor_saque
+        extrato.append(f"Saque: R$ {valor_saque:.2f}")
+        numero_saques_conta += 1
+
+        return extrato, valor_saque
+
+    else:
+        print("Operação falhou! O valor_saque informado é inválido.")
+
+def depositar(saldo_conta, valor_saque, extrato):
     pass
 
-def depositar(saldo, valor, extrato):
-    pass
-
-def extrato_(saldo, *, extrato = 'extrato'):
+def extrato_(saldo_conta, *, extrato = 'extrato'):
     pass
 
 def criar_usuario(nome, data_nascimento, cpf , endereço):
@@ -28,5 +54,20 @@ def criar_usuario(nome, data_nascimento, cpf , endereço):
 def criar_conta_corrente(): 
     pass
     
-while True:
-    pass
+# while True:
+#     pass
+
+
+saldo_conta = 800 
+
+kwargs = {'valor_saque': 10, 'extrato': extrato_conta,'limite': limite_conta, 'limite_saques': LIMITE_SAQUES}
+
+print(saldo_conta, numero_saques_conta, LIMITE_SAQUES)
+
+
+x = sacar(**kwargs)
+x = sacar(**kwargs)
+print(extrato_conta)
+
+print(saldo_conta, numero_saques_conta, LIMITE_SAQUES)
+
