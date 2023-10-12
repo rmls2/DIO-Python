@@ -14,6 +14,7 @@ limite_conta = 500
 extrato_conta = []
 numero_saques_conta = 0
 LIMITE_SAQUES = 3
+clientes_banco = []
 
 def sacar(valor_saque, extrato, limite, limite_saques) -> tuple:
     global saldo_conta, numero_saques_conta
@@ -64,8 +65,23 @@ def extrato_(saldo_conta, /,*, extrato ):
 
 ## parte 2 
 
-def criar_usuario(nome, data_nascimento, cpf , endereço):
-    pass
+def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereçc: str):
+    dados_do_usuarios = dict()
+    global clientes_banco
+
+    for i in clientes_banco:
+        if i['cpf'] == cpf:
+            print('Operação inválida! Usuário ja cadastrado')
+            return dados_do_usuarios
+
+    dados_do_usuarios['cpf'] = cpf
+    dados_do_usuarios['nome'] = nome
+    dados_do_usuarios['data de nascimento'] = data_nascimento
+    dados_do_usuarios['endereço'] = endereçc
+
+    clientes_banco.append(dados_do_usuarios)
+    
+    return dados_do_usuarios
 
 def criar_conta_corrente(): 
     pass
@@ -74,12 +90,6 @@ def criar_conta_corrente():
 #     pass
 
 
-saldo_conta = 800
-limite_conta = 500
 
-print(saldo_conta, extrato_conta)
 
-depositar(510, extrato_conta)
-sacar(valor_saque = 50, extrato= extrato_conta, limite = limite_conta, limite_saques = LIMITE_SAQUES)
-
-extrato_(saldo_conta, extrato = extrato_conta)
+print(clientes_banco)
