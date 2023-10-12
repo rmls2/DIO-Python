@@ -65,7 +65,7 @@ def extrato_(saldo_conta, /,*, extrato ):
 
 ## parte 2 
 
-def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereçc: str):
+def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str):
     dados_do_usuarios = dict()
     global clientes_banco
 
@@ -77,7 +77,7 @@ def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereçc: str):
     dados_do_usuarios['cpf'] = cpf
     dados_do_usuarios['nome'] = nome
     dados_do_usuarios['data de nascimento'] = data_nascimento
-    dados_do_usuarios['endereço'] = endereçc
+    dados_do_usuarios['endereço'] = endereço
 
     clientes_banco.append(dados_do_usuarios)
     
@@ -89,6 +89,7 @@ def criar_conta_corrente():
 # while True:
 #     pass
 
+## parte 3: criar as funções complementares
 
 
 
