@@ -89,6 +89,7 @@ def criar_conta_corrente(usuario: str, cpf:str) -> dict:
     conta = dict()
     global contas_cadastradas #lista de contas
     # procurar na lista de usuarios pelo cpf do usuario e o nome do usuaruio
+    # é impossível criar uma conta sem um usuário
     for cliente in usuarios_banco:
         if cliente['cpf'] == cpf and cliente['nome'] == usuario:
             conta['proprietario da conta'] = cliente['nome']
