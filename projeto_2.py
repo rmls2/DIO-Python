@@ -14,7 +14,8 @@ limite_conta = 500
 extrato_conta = []
 numero_saques_conta = 0
 LIMITE_SAQUES = 3
-clientes_banco = []
+usuarios_banco = []
+contas_cadastradas = []
 
 def sacar(valor_saque, extrato, limite, limite_saques) -> tuple:
     global saldo_conta, numero_saques_conta
@@ -65,26 +66,42 @@ def extrato_(saldo_conta, /,*, extrato ):
 
 ## parte 2 
 
-def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str):
+def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str) -> dict:
     dados_do_usuarios = dict()
-    global clientes_banco
-
-    for i in clientes_banco:
+    global usuarios_banco #lista de usuarios
+    # verifica se o cpf ja está cadastrado
+    for i in usuarios_banco:
         if i['cpf'] == cpf:
             print('Operação inválida! Usuário ja cadastrado')
             return dados_do_usuarios
-
+    # caso não possua, o cadastro é feito e seus dados aramazenados no dicionario
     dados_do_usuarios['cpf'] = cpf
     dados_do_usuarios['nome'] = nome
     dados_do_usuarios['data de nascimento'] = data_nascimento
     dados_do_usuarios['endereço'] = endereço
 
-    clientes_banco.append(dados_do_usuarios)
+    usuarios_banco.append(dados_do_usuarios)
     
     return dados_do_usuarios
 
-def criar_conta_corrente(): 
-    pass
+def criar_conta_corrente(usuario: str, cpf:str) -> dict: 
+    NUMERO_AGENCIA = '0001'
+    conta = dict()
+    global contas_cadastradas #lista de contas
+    # procurar na lista de usuarios pelo cpf do usuario e o nome do usuaruio
+    for cliente in usuarios_banco:
+        if cliente['cpf'] == cpf and cliente['nome'] == usuario:
+            conta['proprietario da conta'] = cliente['nome']
+            conta['numero da conta'] = len(contas_cadastradas)+1
+            conta['numero da agencia'] = NUMERO_AGENCIA
+
+            contas_cadastradas.append(conta)
+            return conta
+    
+        else:
+            print('Usuário ainda não cadastrado! Por favor, cadastre o usuário antes de criar uma conta.')
+            return conta
+
     
 # while True:
 #     pass
@@ -92,5 +109,7 @@ def criar_conta_corrente():
 ## parte 3: criar as funções complementares
 
 
-
-print(clientes_banco)
+criar_usuario('robert', '12-25-23', '1223344', 'rua caraca')
+print(usuarios_banco)
+criar_conta_corrente('robert','223344')
+print(contas_cadastradas)
