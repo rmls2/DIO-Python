@@ -66,7 +66,7 @@ def extrato_(saldo_conta, /,*, extrato ):
 
 ## parte 2 
 
-def criar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str) -> dict:
+def cadastrar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str) -> dict:
     dados_do_usuarios = dict()
     global usuarios_banco #lista de usuarios
     # verifica se o cpf ja está cadastrado
@@ -100,7 +100,8 @@ def criar_conta_corrente(usuario: str, cpf:str) -> dict:
             return conta
     
         else:
-            print('Usuário ainda não cadastrado! Por favor, cadastre o usuário antes de criar uma conta.')
+            print(
+                '''Usuário ainda não cadastrado ou nome e/ou cpf invalido!\nPor favor, cadastre o usuário antes de criar uma conta ou revise o nome e o cpf do usuário''')
             return conta
 
     
@@ -110,7 +111,7 @@ def criar_conta_corrente(usuario: str, cpf:str) -> dict:
 ## parte 3: criar as funções complementares
 
 
-criar_usuario('robert', '12-25-23', '1223344', 'rua caraca')
+cadastrar_usuario('robert', '12-25-23', '1223344', 'rua caraca')
 print(usuarios_banco)
 criar_conta_corrente('robert','223344')
 print(contas_cadastradas)
