@@ -110,8 +110,12 @@ def criar_conta_corrente(usuario: str, cpf:str) -> dict:
 
 ## parte 3: criar as funções complementares
 
+def listar_usuarios():
+    for usuario in usuarios_banco:
+        print(usuario)
 
 cadastrar_usuario('robert', '12-25-23', '1223344', 'rua caraca')
 print(usuarios_banco)
-criar_conta_corrente('robert','223344')
+criar_conta_corrente('robert','1223344')
 print(contas_cadastradas)
+listar_usuarios()
