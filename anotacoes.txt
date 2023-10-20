@@ -10,7 +10,7 @@ esses argumentos permitem add um separador diferente e pular ou não uma linha.
 ex: print(nome, idade, sep="#")
 >>> <nome>#<idade>
 
-print(nome, idade, sep="...")  #por padrão sep tem valor "\n"
+print(nome, idade, end="...")  #por padrão sep tem valor "\n"
 print(variavelx)
 
 >>> <nome><idade>...<variavelx>
