@@ -1,22 +1,3 @@
-## parte 1
-
-menu = """
-
-[d] Depositar
-[s] Sacar
-[e] Extrato
-[q] Sair
-
-=> """
-
-saldo_conta = 0
-limite_conta = 500
-extrato_conta = []
-numero_saques_conta = 0
-LIMITE_SAQUES = 3
-usuarios_banco = []
-contas_cadastradas = []
-
 def sacar(valor_saque, extrato, limite, limite_saques) -> tuple:
     global saldo_conta, numero_saques_conta
 
@@ -74,7 +55,7 @@ def cadastrar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str
         if i['cpf'] == cpf:
             print('Operação inválida! Usuário ja cadastrado')
             return dados_do_usuarios
-    # caso não possua, o cadastro é feito e seus dados aramazenados no dicionario
+    # caso não possua o cadastro, o cadastro é feito e seus dados aramazenados no dicionario
     dados_do_usuarios['cpf'] = cpf
     dados_do_usuarios['nome'] = nome
     dados_do_usuarios['data de nascimento'] = data_nascimento
@@ -98,24 +79,94 @@ def criar_conta_corrente(usuario: str, cpf:str) -> dict:
 
             contas_cadastradas.append(conta)
             return conta
-    
         else:
             print(
                 '''Usuário ainda não cadastrado ou nome e/ou cpf invalido!\nPor favor, cadastre o usuário antes de criar uma conta ou revise o nome e o cpf do usuário''')
             return conta
 
-    
-# while True:
-#     pass
+def inativar_conta(usuario: str, numero_da_conta: int):
+    pergunta_conta = input('Deseja inativar esta conta? (s/n)\n')
+    global contas_cadastradas
 
-## parte 3: criar as funções complementares
+    while True:
+        match pergunta_conta:
+            case 's':
+                for conta in contas_cadastradas:
+                    if conta['proprietario da conta'] == usuario and conta['numero da conta'] == numero_da_conta:
+                        contas_cadastradas.remove(conta)
+                        print(f'a conta do {usuario} foi removida com sucesso.')
+                break    
+            case 'n':
+                print("Ok. Obrigado por continuar conosco!\n")
+                break
+            case _:
+                print('opção inválida!\n')
+                break
 
 def listar_usuarios():
+    print('\nUsuários do Banco:')
     for usuario in usuarios_banco:
-        print(usuario)
+        print('-',usuario)
 
-cadastrar_usuario('robert', '12-25-23', '1223344', 'rua caraca')
-print(usuarios_banco)
-criar_conta_corrente('robert','1223344')
-print(contas_cadastradas)
-listar_usuarios()
+######################################################################################################################
+        
+saldo_conta = 0
+limite_conta = 500
+extrato_conta = []
+numero_saques_conta = 0
+LIMITE_SAQUES = 3
+usuarios_banco = []
+contas_cadastradas = []
+
+menu = """
+
+[d] Depositar
+[s] Sacar
+[e] Extrato
+[v] Vincular conta
+[c] Cadastrar usuario
+[l] Listar usuários
+[i] Inativar conta
+[q] Sair
+
+=> """
+
+while True:
+    opcao = input(menu)
+
+    if opcao == 'd':
+         valor = float(input("Informe o valor do depósito: "))
+         depositar(valor, extrato_conta)
+         
+    elif opcao == 's':
+        valor = float(input("Informe o valor do saque: "))
+        sacar(valor_saque=valor, extrato=extrato_conta, limite=limite_conta, limite_saques=LIMITE_SAQUES)
+
+    elif opcao == 'e':
+        extrato_(saldo_conta, extrato=extrato_conta)
+
+    elif opcao == 'c':
+        nome = input('Digite o nome do usuário: ')
+        data_nascimento = input('Digite a data de nascimento (dd/mm/aaaa): ') 
+        cpf = input('Digite seu CPF (apenas numeros): ') 
+        endereço = input('Digite seu endereço (<rua>, <numero da casa)/<estado>-<cidade>: ')  
+        cadastrar_usuario(nome, data_nascimento, cpf, endereço)
+
+    elif opcao == 'v':
+        usuario = input('Digite o nome do usuário do banco: ') 
+        cpf = input('Digite o CPF do usuário: ')
+        criar_conta_corrente(usuario, cpf)
+
+    elif opcao == 'l':
+        listar_usuarios()
+
+    elif opcao == 'i':
+        print('Você digitou a opção de inativar conta.')
+        continue_ = input('Deseja continuar? (s/n): ')
+
+        if continue_ == 's':
+            usuario = input('Digite o nome do usuario: ')
+            numero_da_conta = int(input('Digite o numero da conta: '))
+            inativar_conta(usuario, numero_da_conta)
+        else:
+            print('operação cancelada.')
