@@ -110,11 +110,12 @@ print(multiplica(5,8))
 valor = 5 
 print(multiplica(valor, 3))
 
-#note que ao passar valor como parâmetro dessa função ela irá multiplica valor * 3 e somar a variável resultado, que agora como é
+#note que ao passar valor como parâmetro dessa função ela irá multiplica valor * 3 e somar a variável resultado, que agora é
 # uma variável global armazena o resultado original (5 + (5*8)) e ao chamar multiplica (valor, 3) foi add (3*5) e por tanto o 
 # valor final de resultado é 60  
 
 # ao passar um variável de fora do escopo da função como argumento pra ela, a função pode alterar o seu valor 
+# geralmente altera o valor da lista só. Mas variáveis numéricas só mudam durante a execução da função.
 
 lista_teste = [1,3]
 

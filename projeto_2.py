@@ -170,3 +170,9 @@ while True:
             inativar_conta(usuario, numero_da_conta)
         else:
             print('operação cancelada.')
+            
+    elif opcao == 'q':
+        print('Agradecemos o seu contato. Tenha um bom dia!')
+        break
+    else:
+        print("Operação inválida, por favor selecione novamente a operação desejada.")
