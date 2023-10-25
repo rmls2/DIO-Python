@@ -1,4 +1,4 @@
-def sacar(valor_saque, extrato, limite, limite_saques) -> tuple:
+def sacar(*,valor_saque, extrato, limite, limite_saques) -> tuple: # o * vai definir a função sacar com argumentos todos nomeados
     global saldo_conta, numero_saques_conta
 
     excedeu_saldo = valor_saque > saldo_conta
@@ -27,7 +27,7 @@ def sacar(valor_saque, extrato, limite, limite_saques) -> tuple:
 
     return extrato, valor_saque
 
-def depositar(valor_deposito, extrato: list) -> tuple:
+def depositar(valor_deposito, extrato: list, /) -> tuple: # / vai dizer 
     global saldo_conta
 
     if valor_deposito > 0:
@@ -38,7 +38,7 @@ def depositar(valor_deposito, extrato: list) -> tuple:
 
     return saldo_conta, extrato
 
-def extrato_(saldo_conta, /,*, extrato ):
+def extrato_(saldo_conta, /,*, extrato ): # / e * vai determinar que saldo_conta é posicional e extrato é argumento nomeado
 
     print("\n================ EXTRATO ================")
     print("Não foram realizadas movimentações." if not extrato else extrato)
@@ -104,9 +104,9 @@ def inativar_conta(usuario: str, numero_da_conta: int):
                 break
 
 def listar_usuarios():
-    print('\nUsuários do Banco:')
+    print('\n***** Usuários do Banco *****')
     for usuario in usuarios_banco:
-        print('-',usuario)
+        print(usuario['nome'], '\n', usuario['data de nascimento'])
 
 ######################################################################################################################
         
