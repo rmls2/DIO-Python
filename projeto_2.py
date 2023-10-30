@@ -1,3 +1,6 @@
+import textwrap
+
+
 def sacar(*,valor_saque, extrato: list, limite, limite_saques, saldo_conta, numero_saques_conta) -> tuple: # o * vai definir a função sacar com argumentos todos nomeados
     
     excedeu_saldo = valor_saque > saldo_conta
@@ -8,14 +11,9 @@ def sacar(*,valor_saque, extrato: list, limite, limite_saques, saldo_conta, nume
     
     
     if excedeu_saldo:
-        print('\n')
-        print('*'*50)
         print("Operação falhou! Você não tem saldo suficiente.")
-        print('*'*50)
     elif excedeu_limite:
-        print('*'*50)
         print("Operação falhou! O valor do saque excede o limite.")
-        print('*'*50)
     elif excedeu_saques:
         print('*'*50)
         print("\nOperação falhou! Número máximo de saques excedido.")
@@ -25,6 +23,7 @@ def sacar(*,valor_saque, extrato: list, limite, limite_saques, saldo_conta, nume
         saldo_conta -= valor_saque
         extrato.append(f"Saque: R$ {valor_saque:.2f}")
         numero_saques_conta += 1
+        print('\nSaque realizado com sucesso!')
 
     else:
         print("\n\nOperação falhou! O valor informado é inválido.")
@@ -36,6 +35,7 @@ def depositar(valor_deposito, extrato: list, saldo_conta, /) -> tuple: # / vai d
     if valor_deposito > 0:
             saldo_conta += valor_deposito
             extrato.append(f"Depósito: R$ {valor_deposito:.2f}")
+            print('\nDepósito realizado com sucesso!')
     else:
         print("Operação falhou! O valor do depósito é invalido.")
 
@@ -43,84 +43,71 @@ def depositar(valor_deposito, extrato: list, saldo_conta, /) -> tuple: # / vai d
 
 def extrato_(saldo_conta, /,*, extrato ): # / e * vai determinar que saldo_conta é posicional e extrato é argumento nomeado
 
-    print("\n================ EXTRATO ================")
-    print("Não foram realizadas movimentações." if not extrato else extrato)
+    print("\n==================== EXTRATO =======================")
+
+    if not extrato:
+        print("Não foram realizadas movimentações.")
+    else:
+        for item in extrato:
+            if item:
+                print(item)
     print(f"\nSaldo: R$ {saldo_conta:.2f}")
-    print("==========================================")
+    print("====================================================")
 
-## parte 2 
-
-def cadastrar_usuario(usuarios) -> dict:
-    cpf = input("Digite o cpf do usuário: ")
+def cadastrar_usuario(usuarios: list) -> dict:
+    cpf = input("\nDigite o cpf do usuário: ")
 
     usuario = filtrar_usuario(cpf, usuarios)
     # verifica se o cpf ja está cadastrado
     
     if usuario:
-        print('Operação inválida! Usuário ja cadastrado')
-        return
+        print('\n------------------------------------------')
+        print('Operação inválida! Usuário ja cadastrado!')
+        print('------------------------------------------')
+
+        return None
 
     nome = input("Informe o nome completo: ")
     data_nascimento = input("Informe a data de nascimento (dd-mm-aaaa): ")
     endereco = input("Informe o endereço (logradouro, nro - bairro - cidade/sigla estado): ")
 
+    print('\nUsuário cadastrado com sucesso!')
     usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
-
-       
-    
-def criar_conta(agencia, numero_conta, usuarios, contas_cadastradas, cpf, nome_do_usuario):
-    
+ 
+def criar_conta(agencia, numero_conta, usuarios):
+    cpf = input("\nInforme o CPF do usuário: ")
     usuario = filtrar_usuario(cpf, usuarios)
 
     if usuario:
-        print("\n=== Conta criada com sucesso! ===")
-        contas_cadastradas.append({"agencia": agencia, "numero_conta": numero_conta, "usuario": nome_do_usuario})
+        print("\nConta criada com sucesso!")
+        return {"agencia": agencia, "numero_conta": numero_conta, "usuario": usuario}
 
-    print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
-
-def inativar_conta(usuario: str, numero_da_conta: int):
-    pergunta_conta = input('Deseja inativar esta conta? (s/n)\n')
-    global contas_cadastradas
-
-    while True:
-        match pergunta_conta:
-            case 's':
-                for conta in contas_cadastradas:
-                    if conta['proprietario da conta'] == usuario and conta['numero da conta'] == numero_da_conta:
-                        contas_cadastradas.remove(conta)
-                        print(f'a conta do {usuario} foi removida com sucesso.')
-                break    
-            case 'n':
-                print("Ok. Obrigado por continuar conosco!\n")
-                break
-            case _:
-                print('opção inválida!\n')
-                break
+    print("\nUsuário não encontrado, fluxo de criação de conta encerrado!")
 
 def listar_usuarios(usuarios_banco):
-    print('\n***** Usuários do Banco *****')
+    print('\n=============== Usuários do Banco ==================')
     for usuario in usuarios_banco:
-        linha = f"""\
-            Nome: \t {usuario['nome']}
-            Data de nascimento: \t {usuario['data de nascimento']}
-
+        linha = f"""
+            Nome: {usuario['nome']}
+            Data de nascimento: {usuario['data_nascimento']}
         """
-        print('='*50)
-        print(linha)
+    if usuarios_banco:
+        print(textwrap.dedent(linha))
+    else:
+        print('\n\tAinda não há usuários cadastrados!')
 
 def menu():
     menu = """
+===================== MENU =========================
+[d] Depositar
+[s] Sacar
+[e] Extrato
+[v] Vincular conta
+[c] Cadastrar usuario
+[l] Listar usuários
+[q] Sair
 
-    [d] Depositar
-    [s] Sacar
-    [e] Extrato
-    [v] Vincular conta
-    [c] Cadastrar usuario
-    [l] Listar usuários
-    [i] Inativar conta
-    [q] Sair
-
-    => """
+=> """
     return input(menu)
 
 def filtrar_usuario(cpf, usuarios):
@@ -144,49 +131,36 @@ def main():
         opcao = menu()
 
         if opcao == 'd':
-            valor = float(input("Informe o valor do depósito: "))
+            valor = float(input("\nInforme o valor do depósito: "))
             saldo_conta, extrato_conta = depositar(valor, extrato_conta, saldo_conta)
             
         elif opcao == 's':
-            valor = float(input("Informe o valor do saque: "))
+            valor = float(input("\nInforme o valor do saque: "))
             saldo_conta, extrato_conta = sacar(valor_saque=valor, extrato=extrato_conta, limite=limite_conta, limite_saques=LIMITE_SAQUES, saldo_conta= saldo_conta, numero_saques_conta= numero_saques_conta)
 
         elif opcao == 'e':
             extrato_(saldo_conta, extrato=extrato_conta)
 
         elif opcao == 'c':
-            nome = input('Digite o nome do usuário: ')
-            data_nascimento = input('Digite a data de nascimento (dd/mm/aaaa): ') 
-            cpf = input('Digite seu CPF (apenas numeros): ') 
-            endereço = input('Digite seu endereço (<rua>, <numero da casa>, <bairro>- <cidade>/<estado>: ')  
-            cadastrar_usuario(nome, data_nascimento, cpf, endereço)
+            cadastrar_usuario(usuarios_banco)
 
         elif opcao == 'v':
-            cpf = input("Digite o CPF do usuário: ")
-            nome_do_usuario = input("Digite o nome do usuário: ")
             numero_conta = contador + 1
+            conta = criar_conta(AGENCIA, numero_conta, usuarios_banco)
 
-            criar_conta(AGENCIA, numero_conta, usuarios_banco, contas_cadastradas, cpf, nome_do_usuario )
+            if conta:
+                contas_cadastradas.append(conta)
 
         elif opcao == 'l':
-            listar_usuarios()
+            listar_usuarios(usuarios_banco)
 
-        elif opcao == 'i':
-            print('Você digitou a opção de inativar conta.')
-            continue_ = input('Deseja continuar? (s/n): ')
-
-            if continue_ == 's':
-                usuario = input('Digite o nome do usuario: ')
-                numero_da_conta = int(input('Digite o numero da conta: '))
-                inativar_conta(usuario, numero_da_conta)
-            else:
-                print('operação cancelada.')
                 
         elif opcao == 'q':
-            print('Agradecemos o seu contato. Tenha um bom dia!')
+            print('\n====================================================')
+            print('\nAgradecemos o seu contato. Tenha um bom dia!\n')
             break
         else:
-            print("Operação inválida, por favor selecione novamente a operação desejada.")
+            print("\nOperação inválida, por favor selecione novamente a operação desejada.")
 
 
 main()
