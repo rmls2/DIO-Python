@@ -50,23 +50,22 @@ def extrato_(saldo_conta, /,*, extrato ): # / e * vai determinar que saldo_conta
 
 ## parte 2 
 
-def cadastrar_usuario(nome: str, data_nascimento: str, cpf: str , endereço: str) -> dict:
-    dados_do_usuarios = dict()
-    global usuarios_banco #lista de usuarios
+def cadastrar_usuario(usuarios) -> dict:
+    cpf = input("Digite o cpf do usuário: ")
 
-    usuario = filtrar_usuario(cpf, usuarios_banco)
+    usuario = filtrar_usuario(cpf, usuarios)
     # verifica se o cpf ja está cadastrado
     
     if usuario:
-         # caso não possua o cadastro, o cadastro é feito e seus dados aramazenados no dicionario
-        dados_do_usuarios['cpf'] = cpf
-        dados_do_usuarios['nome'] = nome
-        dados_do_usuarios['data de nascimento'] = data_nascimento
-        dados_do_usuarios['endereço'] = endereço
-        usuarios_banco.append(dados_do_usuarios)
-
-    else:
         print('Operação inválida! Usuário ja cadastrado')
+        return
+
+    nome = input("Informe o nome completo: ")
+    data_nascimento = input("Informe a data de nascimento (dd-mm-aaaa): ")
+    endereco = input("Informe o endereço (logradouro, nro - bairro - cidade/sigla estado): ")
+
+    usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
+
        
     
 def criar_conta(agencia, numero_conta, usuarios, contas_cadastradas, cpf, nome_do_usuario):
@@ -108,8 +107,6 @@ def listar_usuarios(usuarios_banco):
         """
         print('='*50)
         print(linha)
-
-######################################################################################################################
 
 def menu():
     menu = """
