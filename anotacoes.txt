@@ -39,3 +39,25 @@ split - dividir
 
 --> objetos de primeira classe: funções em python são um objeto de primeira classe pois é possível passar uma função como parâmetro de uma 
 outra função, atriburir a variáveis, usá-las como valores em estrutura de dados e usar como valor de retorno para uma função
+
+
+***** Docstring*****
+
+A primeira string depois do cabeçalho da função é chamada de docstring, é uma string usada para especificar a funcionalidade da nossa função, 
+e embora seja opcional, vos lembro que documentar é uma importante prática de programação, uma vez que possivelmente outras pessoas estarão 
+lendo nosso código, inclusive é importante até mesmo para você lembrar o que você fez!
+
+Caso queiramos ver o docstring de uma função, podemos acessar o atributo __doc__:
+
+print(padrao.__doc__) # Função que apenas imprime um valor
+
+usando doctring com uma função criada: 
+
+def imc(peso_kg, altura_em_metros):
+    """ essa função calcula o imc de acordo com o peso"""
+    return (peso_kg/altura_em_metros**2)
+
+
+meu_imc = imc(100, 1.85)
+print(meu_imc)
+help(imc)
