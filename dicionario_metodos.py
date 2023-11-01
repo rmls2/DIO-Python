@@ -25,7 +25,7 @@ dic2 = dict.fromkeys(["cpf", "telefone"],'vazio') #passando um valor padrao
 
 # print(dic2)
 
-# .get(): se o metodo não encontrar a chave ele irá retornar None
+# .get(<chave>): se o metodo não encontrar a chave ele irá retornar None
 
 
 # print(copia['telefone']) #keyerror, pois a chave telefone não exite 
@@ -45,7 +45,7 @@ dic2 = dict.fromkeys(["cpf", "telefone"],'vazio') #passando um valor padrao
 # print('valores: ', contatos.values())
 
 ## .pop(<item>): remove e retornar o valor removido, caso não encontre a chave é possível passar um valor default que ele irá retornar 
-## caso o valor procurado para remoção não seja encontrado é possível passar um valor defaultp pra ele retornar e assim evitar o keyerror
+## caso o valor procurado para remoção não seja encontrado é possível passar um valor default pra ele retornar e assim evitar o keyerror
 
 print(contatos.pop('gabghv@'))
 print(contatos.pop('gabghv@', 'chave não encontrada')) #passando valor default
