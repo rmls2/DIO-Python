@@ -61,3 +61,10 @@ x = 13
 externa()
 print(f'valor de x = {x}')
 print(id(x))
+
+
+lista = ['1','2','3','4', 5, '6']
+
+
+
+print(x)
