@@ -1,0 +1,4 @@
+pesquisar sobre métodos especiais: __name__, __class__
+
+
+herança múltipla - quando uma classe herda de mais de uma classe 
