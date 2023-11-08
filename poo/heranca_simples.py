@@ -9,7 +9,7 @@ class Veiculo:
  
     def __str__(self) -> str:
         return f"{self.__class__.__name__} : {'; '.join([f'{chave} = {valor}' for chave, valor in self.__dict__.items()])}"
-
+        #return f"{self.__class__.__name__}: {self.cor}"
 class Motocicleta(Veiculo):
     def __init__(self, cor: str, placa: str, numero_rodas: int, encomenda) -> None:
         super().__init__(cor, placa, numero_rodas)
@@ -21,7 +21,8 @@ class Motocicleta(Veiculo):
 
 class Carro(Veiculo):
     pass
-
+     
+  
 class Caminhao(Veiculo):
     def __init__(self, cor: str, placa: str, numero_rodas: int, carregado) -> None:
         super().__init__(cor, placa, numero_rodas)
