@@ -10,22 +10,26 @@ class Mamifero(Animal):
         self.cor_pelo = cor_pelo
         super().__init__(**kw)
 
+    def __str__(self) -> str:
+        return "mamifero"
 
 class Ave(Animal):
     def __init__(self, cor_bico, **kw) -> None:
         self.cor_bico = cor_bico
         super().__init__(**kw)
-
-class Gato(Mamifero):
-    pass
-
+    def __str__(self) -> str:
+        return "ave"
+    
 class Ornitorrinco(Mamifero, Ave):
     def __init__(self, cor_pelo, cor_bico, nro_patas) -> None:
-        super().__init__(cor_pelo=cor_pelo, cor_bico=cor_bico, nro_patas=nro_patas) ## tbm funcionaria se fizéssemos usando **kw
-
-gato1 = Gato(cor_pelo='azul', nro_patas = 3)
-
-print(gato1)
-
+        super().__init__(cor_pelo=cor_pelo, cor_bico=cor_bico, nro_patas=nro_patas) 
+        
+        ## tbm funcionaria se fizéssemos usando **kw
+         # def __init__(self, **kw)
+           #  super().__init__(**kw) ## tbm funcionaria se fizéssemos usando **kw
+        #print(Ornitorrinco.__mro__)
+    def __str__(self) -> str:
+        return super().__str__()
+    
 ornitorrinco = Ornitorrinco(nro_patas=4, cor_pelo="vermelho", cor_bico="azul")
 print(ornitorrinco)
