@@ -2,3 +2,17 @@ pesquisar sobre métodos especiais: __name__, __class__
 
 
 herança múltipla - quando uma classe herda de mais de uma classe 
+
+
+atributos publicos e privados em python: em python não tem atributos privados restritos. Os atributos privados são designados por __<nome-atributo>
+e isso sinaliza que esse atributo não pode ser modificado ou visualizado de maneira direta. 
+
+● Público: Pode ser acessado de fora da classe.
+● Privado: Só pode ser acessado pela classe.
+
+properties:
+
+a propriedade pega um atributp e transforma ele em uma propriedade. 
+meio que faz um método ser chamado por sintaxe de atributo.
+
+uso interessante do properties está em propriedades_ex2.oy
