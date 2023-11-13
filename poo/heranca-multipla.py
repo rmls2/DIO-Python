@@ -1,6 +1,7 @@
 class Animal:
-    def __init__(self, nro_patas) -> None:
+    def __init__(self, nro_patas, nome) -> None:
         self.nro_patas = nro_patas
+        self.nome = nome
 
     def __str__(self) -> str:
             return f"{self.__class__.__name__} : {'; '.join([f'{chave} = {valor}' for chave, valor in self.__dict__.items()])}"
@@ -21,8 +22,8 @@ class Ave(Animal):
         return "ave"
     
 class Ornitorrinco(Mamifero, Ave):
-    def __init__(self, cor_pelo, cor_bico, nro_patas) -> None:
-        super().__init__(cor_pelo=cor_pelo, cor_bico=cor_bico, nro_patas=nro_patas) 
+    def __init__(self, cor_pelo, cor_bico, nro_patas, nome) -> None:
+        super().__init__(cor_pelo=cor_pelo, cor_bico=cor_bico, nro_patas=nro_patas, nome=nome) 
         
         ## tbm funcionaria se fizéssemos usando **kw
          # def __init__(self, **kw)
@@ -31,5 +32,5 @@ class Ornitorrinco(Mamifero, Ave):
     def __str__(self) -> str:
         return super().__str__()
     
-ornitorrinco = Ornitorrinco(nro_patas=4, cor_pelo="vermelho", cor_bico="azul")
+ornitorrinco = Ornitorrinco(nome="bicho", nro_patas=4, cor_pelo="vermelho", cor_bico="azul")
 print(ornitorrinco)
