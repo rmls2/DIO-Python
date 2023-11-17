@@ -2,7 +2,7 @@ class Foo:
     def __init__(self, x) -> None:
         self._x = x 
 
-    @property     ##o property retorna valor 
+    @property     ##o property retorna valor, é uma forma de acesso ao atributo x
     def x(self):
         return self._x or 0 
     @x.setter       ## não retorna valor. Para atribuir valor para o property é por meio do setter
