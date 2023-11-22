@@ -10,7 +10,11 @@ class Foo:
         self._x += value
     @x.deleter
     def x(self):
-        self._x = -1
+        # # pode se usar o del para deletar um atributo da maneira abaixo
+        # print('deletando com sucesso o _x')
+        # del self._x
+        print('setando x para 0') ##essa é a forma "exclui o valor do atributo mas o conserva"
+        self._x = 0   
     
 foo = Foo(20)
 print(foo.x)
