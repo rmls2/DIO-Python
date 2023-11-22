@@ -13,33 +13,33 @@
 # print(x)
 
 
-# Definição da Função recebendo kwargs
-def funcao(**kwargs):
-    # Percorrendo argumento nomeados
-    for chave in kwargs:
-        print(f"Acessando Chave '{chave}', valor = {kwargs.get(chave)}")
+# # Definição da Função recebendo kwargs
+# def funcao(**kwargs):
+#     # Percorrendo argumento nomeados
+#     for chave in kwargs:
+#         print(f"Acessando Chave '{chave}', valor = {kwargs.get(chave)}")
 
-regulagem = {'max': 10, 'meio': 5, 'min': 0}
+# regulagem = {'max': 10, 'meio': 5, 'min': 0}
 
-funcao(**regulagem)
+# funcao(**regulagem)
 
-contatos = {
-    'miller182@': {'nome': 'Robert', 'idade': 26},
-    'karol@': {'nome': 'Karolyne', 'idade': 26},
-    'gabghv@': {'nome': 'Gabriel', 'idade': 22},
-    'bruno@': {'nome': 'Bruno', 'idade': 23} 
-}
+# contatos = {
+#     'miller182@': {'nome': 'Robert', 'idade': 26},
+#     'karol@': {'nome': 'Karolyne', 'idade': 26},
+#     'gabghv@': {'nome': 'Gabriel', 'idade': 22},
+#     'bruno@': {'nome': 'Bruno', 'idade': 23} 
+# }
 
-contatos.update({'miller182@': 'cara', 'karol@': 'muie'})
-
-
-def imc(peso_kg, altura_em_metros):
-    """ essa função calcula o imc de acordo com o peso"""
-    return (peso_kg/altura_em_metros**2)
+# contatos.update({'miller182@': 'cara', 'karol@': 'muie'})
 
 
-meu_imc = imc(100, 1.85)
-print(meu_imc)
+# def imc(peso_kg, altura_em_metros):
+#     """ essa função calcula o imc de acordo com o peso"""
+#     return (peso_kg/altura_em_metros**2)
+
+
+# meu_imc = imc(100, 1.85)
+
 # help(imc)
 
 
@@ -48,14 +48,14 @@ x =10
 y = 11
 
 def externa():
-    x = 13
+    x = 10
     print(x)
     print(f'valor de x = {x}')
-    print(id(x))
+    #print(id(x))
     def interna():
-        x = 13
+        x = 11
         print(f'valor de x = {x}')
-        print(id(x))
+        #print(id(x))
     interna()
 x = 13
 externa()
