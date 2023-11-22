@@ -17,3 +17,4 @@ meio que faz um método ser chamado por sintaxe de atributo.
 
 uso interessante do properties está em propriedades_ex2.py
 em python se não há necessidade do atributo ser privado, não precisa usar properties e setter.
+Se não, se usa o property para returnar a propriedade mudar (usando setter) ou excluir usando (del)
