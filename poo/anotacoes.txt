@@ -67,7 +67,7 @@ def main():
 # Executa a função main
 main()
 
-polimorfismo:
+--> polimorfismo:
 
 em programação polimorfismo significa ter o mesmo nome de função mas com características difrentes. 
 isso é útil ao utilizar o polimorfismo com herença em que a classe filha herda os métodos da classe pai, no entanto sendo possível modificar
