@@ -10,14 +10,62 @@ e isso sinaliza que esse atributo não pode ser modificado ou visualizado de man
 ● Público: Pode ser acessado de fora da classe.
 ● Privado: Só pode ser acessado pela classe.
 
-properties: ou atributos gerenciaáveis
+properties: ou atributos gerenciáveis. São decorator para métodos.
 
-a propriedade pega um atributp e transforma ele em uma propriedade. 
+
+a propriedade pega um atributo e transforma ele em uma propriedade. 
 meio que faz um método ser chamado por sintaxe de atributo.
 
-uso interessante do properties está em propriedades_ex2.py
+de forma geral, decorator nada mais é que um método para envolver uma função, modificando seu comportamento.
+
+uso interessante do properties está em propriedades_ex1.py
 em python se não há necessidade do atributo ser privado, não precisa usar properties e setter.
 Se não, se usa o property para returnar a propriedade mudar (usando setter) ou excluir usando (del)
+
+---> exemplo de uso de decorator, sem ser um property:
+
+def decorator(funcao):
+    def wrapper():
+        print ("Estou antes da execução da função passada como argumento")
+        funcao()
+        print ("Estou depois da execução da função passada como argumento")
+
+    return wrapper
+
+def outra_funcao():
+    print ("Sou um belo argumento!")
+
+funcao_decorada = decorator(outra_funcao)
+funcao_decorada()
+
+---> outro exemplo:
+
+import time
+
+# Define nosso decorator
+def calcula_duracao(funcao):
+    def wrapper():
+        # Calcula o tempo de execução
+        tempo_inicial = time.time()
+        funcao()
+        tempo_final = time.time()
+
+        # Formata a mensagem que será mostrada na tela
+        print("[{funcao}] Tempo total de execução: {tempo_total}".format(
+            funcao=funcao.__name__.upper(),
+            tempo_total=str(tempo_final - tempo_inicial))
+        )
+
+    return wrapper
+
+# Decora a função com o decorator
+@calcula_duracao
+def main():
+    for n in range(0, 10000000):
+        pass
+
+# Executa a função main
+main()
 
 polimorfismo:
 
