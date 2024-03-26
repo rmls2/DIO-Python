@@ -1,5 +1,5 @@
 class Cachorro:
-    def __init__(self, nome, cor, acordado = True) -> None: #o __init__ é executado sempre que a classe é estanciada. é o primeiro metodo a ser executado
+    def __init__(self, nome, cor, acordado = True) -> None: #o __init__ é executado sempre que a classe é instanciada. é o primeiro metodo a ser executado
         print("inicializando a classe ... ")
         self.nome = nome
         self.cor = cor
@@ -46,12 +46,9 @@ cachorro_1.latir()
 
 print(cachorro_1)
 
-print('alo globo')
-print('alo globo')
 
-del cachorro_1
-cachorro_1.latir()
+cachorro_1.__del__
+# del cachorro_1
+print(cachorro_1.cor)
+print(cachorro_1.nome)
 
-print('alo globo')
-print('alo globo')
-print('alo globo')

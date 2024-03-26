@@ -20,7 +20,7 @@ class Bicicleta:
 
     def __str__(self) -> str:
     
-        return f"{self.__class__.__name__} : {'; '.join([f'{chave} = {valor}' for chave, valor in self.__dict__.items()])}"
+        return f"{self.__class__.__name__} : {' - '.join([f'{chave} = {valor}' for chave, valor in self.__dict__.items()])}"
 
 bike = Bicicleta("vermelho", "caloi", 2010, 1000.00)
 
@@ -38,3 +38,6 @@ print(bike.correr(False))
 #
 #    add:   def __str__(self) -> str:
 #               return f"{self.__class__.__name__} : {'; '.join([f'{chave} = {valor}' for chave, valor in self.__dict__.items()])}"
+
+
+print(bike.__str__())

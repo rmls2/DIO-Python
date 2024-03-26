@@ -53,6 +53,7 @@ def calcula_duracao(funcao):
     def wrapper():
         # Calcula o tempo de execução
         tempo_inicial = time.time()
+        time.sleep(5)
         funcao()
         tempo_final = time.time()
 
