@@ -11,15 +11,15 @@ class Mamifero(Animal):
         self.cor_pelo = cor_pelo
         super().__init__(**kw)
 
-    # def __str__(self) -> str:
-    #     return "mamifero"
+    def __str__(self) -> str:
+        return "mamifero"
 
 class Ave(Animal):
     def __init__(self, cor_bico, **kw) -> None:
         self.cor_bico = cor_bico
         super().__init__(**kw)
-    # def __str__(self) -> str:
-    #     return "ave"
+    def __str__(self) -> str:
+        return "ave"
     
 class Ornitorrinco(Ave, Mamifero):
     def __init__(self, cor_pelo, cor_bico, nro_patas, nome) -> None:
