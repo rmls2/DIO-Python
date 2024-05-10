@@ -1,5 +1,5 @@
 with open('desafio_1.py', 'r') as f:
-    texto = f.readline()
+    texto = f.read()
 
 print(texto)
 
