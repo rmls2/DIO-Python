@@ -71,29 +71,33 @@ print(sub) """
 #     print(start_party())
 #     print(finish_party())
 
-import time
+class Casa:
 
-# Define nosso decorator
-def calcula_duracao(funcao):
-    def wrapper():
-        # Calcula o tempo de execução
-        tempo_inicial = time.time()
-        funcao()
-        tempo_final = time.time()
+	def __init__(self, preco):
+		self._preco = preco
 
-        # Formata a mensagem que será mostrada na tela
-        print("[{funcao}] Tempo total de execução: {tempo_total}".format(
-            funcao=funcao.__name__.upper(),
-            tempo_total=str(tempo_final - tempo_inicial))
-        )
+	@property
+	def preco(self):
+		return self._preco
+	
+	# @preco.setter
+	# def preco(self, novo_preco):
+	# 	if novo_preco > 0 and isinstance(novo_preco, float):
+	# 		self._preco = novo_preco
+	# 	else:
+	# 		print("Insira um preço válido")
 
-    return wrapper
+	@preco.deleter
+	def preco(self):
+		del self._preco
+		
+casa = Casa(50000.00)
 
-# Decora a função com o decorator
-@calcula_duracao
-def main():
-    for n in range(0, 10000000):
-        pass
+print(casa.preco)
 
-# Executa a função main
-main()
+del casa.preco
+
+casa1 = Casa(50000.00)
+
+print(casa1.preco)
+

@@ -1,17 +1,18 @@
 # formas de esrever listas
 lista_sem_list = []
-lista_com_list = list(range(10))
+lista_com_list = list(range(9))
 print(lista_com_list)
 
 # fatiamentos 
 
-lista_metade1 = lista_com_list[:5]
-lista_metade2 = lista_com_list[5:]
-metade2_reversa  = lista_metade2[::-1]
+lista_metade1 = lista_com_list[:5] #vai de 0 até 4 (4o item da lista): 0,1,2,3,4
+lista_metade2 = lista_com_list[5:] #vai de 5 (6o item da lista) até o último item da lista
+metade2_reversa  = lista_metade2[::-1] #vai pegar a metade reversa da lista, no caso de range(9): 8,7,6,5
 
 # é possível passar um argumento step ao final do fatiamento 
 
-lista_com_list[0:5:2]  ##vai de 0 até 5 pulando de 2 em 2 [inicio: parada: step ]
+lista_com_list[0:5:2]  ##vai de 0 até 5 (no caso 4, pq para antes) pulando de 2 em 2 [inicio: parada: step ]
+print(lista_com_list[0:5:2] )
 
 print(lista_com_list[0:8:2])
 
@@ -23,7 +24,7 @@ print('essa é a segunda metade: ', metade2_reversa)
 
 listas_de_listas = [[1,2,3], [4,5,6], [7,8,9]]
 
-print(listas_de_listas[1][-1]) ##vai retornar 6 
+print(listas_de_listas[1][-1]) ##vai retornar 6, porque vai selecionar a segunda lista e vai exibir seu último elemento 
 
 #percorrendo listas com indices usando a função enumerate que tbm tem um indice e é uma classe especifica de python
 
