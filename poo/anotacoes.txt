@@ -10,17 +10,24 @@ e isso sinaliza que esse atributo não pode ser modificado ou visualizado de man
 ● Público: Pode ser acessado de fora da classe.
 ● Privado: Só pode ser acessado pela classe.
 
-properties: ou atributos gerenciáveis. São decorator para métodos.
+--> properties: ou atributos gerenciáveis. São decorator para métodos.
 
 
 a propriedade pega um atributo e transforma ele em uma propriedade. 
 meio que faz um método ser chamado por sintaxe de atributo.
 
-de forma geral, decorator nada mais é que um método para envolver uma função, modificando seu comportamento.
+de forma geral, propriedade nada mais é que um método para envolver uma função, modificando seu comportamento.
+Especificamente, você pode definir três métodos para uma propriedade:
+
+Um getter - para acessar o valor do atributo.
+Um setter - para definir o valor do atributo.
+Um deleter - para excluir o atributo de instância.
 
 uso interessante do properties está em propriedades_ex1.py
-em python se não há necessidade do atributo ser privado, não precisa usar properties e setter.
-Se não, se usa o property para returnar a propriedade mudar (usando setter) ou excluir usando (del)
+em python se não há necessidade do atributo ser privado, não precisa usar getter e setter.
+Se não, se usa o property para returnar a propriedade, muda usando setter ou exclui usando (del)
+
+as propriedades servem basicamente para adcionar getter e setter de maneira pythonica. (vide o )
 
 ---> exemplo de uso de decorator, sem ser um property:
 

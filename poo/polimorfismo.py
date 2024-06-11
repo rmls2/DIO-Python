@@ -4,16 +4,12 @@ class Passaro:
         print("voando")
 
 class Pardal(Passaro):
-    def __init__(self) -> None:
-        super().__init__()
     
     def voar(self):
         super().voar()
     
 
 class Avestruz(Passaro):
-    def __init__(self) -> None:
-        super().__init__()
     
     def voar(self):
         print('avestruz não voa')
