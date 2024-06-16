@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
+import textwrap
 
 class Conta: 
 
@@ -19,7 +20,7 @@ class Conta:
         return self._numero
     @property
     def agencia(self):
-        return self.agencia
+        return self._agencia
     
     @property
     def cliente(self):
@@ -133,22 +134,28 @@ class Historico:
 
 class ContaCorrente(Conta):
 
-    numero_saques = 0
-
     def __init__(self,numero, cliente, limite = 500, limite_saques = 3):
         super().__init__(numero, cliente)
         self._limite = limite
         self._limite_saques = limite_saques
     
 
-    # def sacar(self, valor: float):
+    def sacar(self, valor):
+        numero_saques = len([transacao for transacao in self.historico.transacoes if transacao["tipo"] == Saque.__name__])
 
-    #     if (valor > 0 and valor <= self.saldo) and (valor <= self._limite and ContaCorrente.numero_saques < self._limite_saques):
-    #         self.saldo =-valor
-    #         ContaCorrente.numero_saques += 1
-    #         return True 
-    #     else:
-    #         return False
+        excedeu_limite = valor > self.limite
+        excedeu_saques = numero_saques >= self.limite_saques
+
+        if excedeu_limite:
+            print("\n@@@ Operação falhou! O valor do saque excede o limite. @@@")
+
+        elif excedeu_saques:
+            print("\n@@@ Operação falhou! Número máximo de saques excedido. @@@")
+
+        else:
+            return super().sacar(valor)
+
+        return False        
 
 
     
@@ -158,3 +165,25 @@ class ContaCorrente(Conta):
                 C/C:\t\t{self.numero}
                 Titular:\t{self.cliente.nome}
                 """
+
+def menu():
+    menu = """\n
+    ================ MENU ================
+    [d]\tDepositar
+    [s]\tSacar
+    [e]\tExtrato
+    [nc]\tNova conta
+    [lc]\tListar contas
+    [nu]\tNovo usuário
+    [q]\tSair
+    => """
+    return input(textwrap.dedent(menu))
+
+
+def main():
+    clientes = []
+    contas = []
+
+    while True:
+        opcao = menu()
+    
