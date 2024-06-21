@@ -186,4 +186,21 @@ def main():
 
     while True:
         opcao = menu()
+        match opcao:
+            case "d":
+                pass
+            case "s":
+                pass
+            case "e":
+                pass
+            case "nc":
+                pass
+            case "lc":
+                pass
+            case "nu":
+                pass
+            case "q":
+                break
+
     
+main()
