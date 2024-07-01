@@ -4,7 +4,7 @@ import textwrap
 
 class Conta: 
 
-    def __init__(self,numero, cliente) -> None:
+    def __init__(self,numero, cliente: object) -> None:
         self._saldo = 0
         self._numero = numero
         self._agencia = "0001"
@@ -32,7 +32,6 @@ class Conta:
     
     @classmethod
     def nova_conta(cls, cliente: object, numero):
-
         return cls(numero, cliente)
     
     def sacar(self, valor: float):
@@ -99,6 +98,11 @@ class Cliente:
     def __init__(self, endereco: str) -> None:
         self._endereco = endereco
         self._contas = []
+
+    @property
+    def contas(self):
+        return self._contas
+    
     @staticmethod
     def realizar_transacao(conta: Conta, transacao: Transacao):
         transacao.registrar(conta)
@@ -134,7 +138,7 @@ class Historico:
 
 class ContaCorrente(Conta):
 
-    def __init__(self,numero, cliente, limite = 500, limite_saques = 3):
+    def __init__(self,numero, cliente: object, limite = 500, limite_saques = 3):
         super().__init__(numero, cliente)
         self._limite = limite
         self._limite_saques = limite_saques
@@ -155,8 +159,11 @@ class ContaCorrente(Conta):
         else:
             return super().sacar(valor)
 
-        return False        
-
+        return False    
+        
+    @classmethod
+    def nova_conta(cls, cliente, numero):
+        return super().nova_conta(cliente, numero)
 
     
     def __str__(self) -> str:
@@ -165,6 +172,96 @@ class ContaCorrente(Conta):
                 C/C:\t\t{self.numero}
                 Titular:\t{self.cliente.nome}
                 """
+
+def filtrar_cliente(clientes: list, cpf_cliente)-> list:
+    cliente_cadastrado = [cliente for cliente in clientes if cliente.cpf == cpf_cliente]
+    return cliente_cadastrado
+
+def filtrar_conta(contas: list, numero_conta) -> list:
+    conta_cadastrada = [conta_banco for conta_banco in contas if conta_banco.numero == numero_conta ]
+    return conta_cadastrada
+
+def novo_usuario(clientes: list) -> None:
+    endereco_ciente = input("Digite o endereço do cliente: ")
+    cpf_cliente = input("Digite o cpf do cliente: ")
+    nome_cliente = input("Digite o nome do cliente: ")
+    data_nascimento_cliente = input("Digite a data de nascimento do cliente: ")
+
+    usuario = PessoaFisica(endereco_ciente, cpf_cliente, nome_cliente, data_nascimento_cliente)
+    if usuario in clientes:
+        print("Cliente já cadastrado!")
+        usuario = None
+        return None
+    clientes.append(usuario)
+
+def nova_conta(contas: list, clientes: list):
+    cpf_cliente = input("Digite o seu cpf: ")
+    cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)
+
+    if not cliente_cadastrado:
+        print("Cliente ainda não cadastrado! É preciso realizar o cadastro antes de criar uma conta")
+        return None 
+    
+    cliente = cliente_cadastrado[0] 
+    numero_conta = input("Digite o número da conta: ")
+    conta_cadastrada = filtrar_conta(contas=contas, numero_conta=numero_conta)
+
+    if conta_cadastrada:
+        print("Essa Conta já existe!")
+
+    nova_conta = ContaCorrente.nova_conta(numero=numero_conta, cliente=cliente)
+    cliente.adcionar_conta(nova_conta)
+    contas.append(nova_conta)
+
+def depositar(clientes: list, contas: list, valor_deposito: float) -> None:
+    cpf_cliente = input("Digite o seu cpf: ")
+    cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)
+
+    if not cliente_cadastrado:
+        print("Você não cliente do banco! Realize seu cadasto")
+        return None
+    
+    numero_conta = input("Digite o número da sua conta: ")
+    conta_cadastrada = filtrar_conta(contas=contas, numero_conta=numero_conta)
+
+    if not conta_cadastrada:
+        print("Apesar de ser cliente, você não possui uma conta! Crie uma conta primeiro")
+        return None
+
+    Deposito(valor_deposito).registrar(conta_cadastrada[0])
+
+    
+def sacar(clientes: list, contas: list, valor_saque: float):
+    cpf_cliente = input("Digite o seu cpf: ")
+    cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)
+
+    if not cliente_cadastrado:
+        print("Você não cliente do banco! Realize seu cadasto")
+        return None
+    
+    numero_conta = input("Digite o número da sua conta: ")
+    conta_cadastrada = filtrar_conta(contas=contas, numero_conta=numero_conta)[0]
+
+    if not conta_cadastrada:
+        ("Cliente não possui uma conta! Crie uma conta no nosso banco para poder realizar um saque!")
+        return None
+    Saque(valor_saque).registrar(conta_cadastrada)
+
+def extrato(clientes: list, contas: list):
+    cpf_cliente = input("Informe o CPF do cliente: ")
+    cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)
+
+    if not cliente_cadastrado:
+        print("\n@@@ Cliente não encontrado! @@@")
+        return
+    
+
+
+
+def listar_contas():
+    pass
+
+    
 
 def menu():
     menu = """\n
@@ -181,24 +278,24 @@ def menu():
 
 
 def main():
-    clientes = []
-    contas = []
+    clientes_banco = []
+    contas_banco = []
 
     while True:
         opcao = menu()
         match opcao:
             case "d":
-                pass
+                depositar(clientes=clientes_banco, contas=contas_banco, valor_deposito=150)
             case "s":
                 pass
             case "e":
                 pass
             case "nc":
-                pass
+                nova_conta(contas=contas_banco, clientes=clientes_banco)
             case "lc":
                 pass
             case "nu":
-                pass
+                novo_usuario(clientes=clientes_banco)
             case "q":
                 break
 
