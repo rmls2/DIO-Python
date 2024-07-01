@@ -255,7 +255,7 @@ def extrato(clientes: list, contas: list):
         print("\n@@@ Cliente não encontrado! @@@")
         return
     
-
+    #função incompleta 
 
 
 def listar_contas():
