@@ -41,7 +41,7 @@ class Conta:
             print('\n@@@ Operação não suportada! Valor informado é inválido. @@@')
             return False
         elif not excedeu_saldo:
-            self.saldo =-valor
+            self._saldo -=valor
             print("\n === Saque realizado com sucesso! ===")
             return True 
         else:
@@ -50,7 +50,7 @@ class Conta:
 
     def depositar(self, valor: float):
         if valor > 0:
-            self.saldo += valor
+            self._saldo += valor
             print("\n=== Depósito realizado com sucesso! ===")
             return True
         else:
@@ -147,8 +147,8 @@ class ContaCorrente(Conta):
     def sacar(self, valor):
         numero_saques = len([transacao for transacao in self.historico.transacoes if transacao["tipo"] == Saque.__name__])
 
-        excedeu_limite = valor > self.limite
-        excedeu_saques = numero_saques >= self.limite_saques
+        excedeu_limite = valor > self._limite
+        excedeu_saques = numero_saques >= self._limite_saques
 
         if excedeu_limite:
             print("\n@@@ Operação falhou! O valor do saque excede o limite. @@@")
@@ -194,6 +194,8 @@ def novo_usuario(clientes: list) -> None:
         return None
     clientes.append(usuario)
 
+    print("\n=== Cliente criado com sucesso! ===")
+
 def nova_conta(contas: list, clientes: list):
     cpf_cliente = input("Digite o seu cpf: ")
     cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)
@@ -212,6 +214,9 @@ def nova_conta(contas: list, clientes: list):
     nova_conta = ContaCorrente.nova_conta(numero=numero_conta, cliente=cliente)
     cliente.adcionar_conta(nova_conta)
     contas.append(nova_conta)
+    
+    print("\n=== Conta criada com sucesso! ===")
+
 
 def depositar(clientes: list, contas: list, valor_deposito: float) -> None:
     cpf_cliente = input("Digite o seu cpf: ")
@@ -247,19 +252,40 @@ def sacar(clientes: list, contas: list, valor_saque: float):
         return None
     Saque(valor_saque).registrar(conta_cadastrada)
 
-def extrato(clientes: list, contas: list):
+def extrato(clientes: list):
     cpf_cliente = input("Informe o CPF do cliente: ")
-    cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)
+    cliente_cadastrado = filtrar_cliente(clientes=clientes, cpf_cliente=cpf_cliente)[0]
 
     if not cliente_cadastrado:
         print("\n@@@ Cliente não encontrado! @@@")
         return
     
-    #função incompleta 
+    numero_conta = input("Por favor, digite o número da sua conta: ")
+    conta_extrato = [conta for conta in cliente_cadastrado.contas if numero_conta == conta.numero][0]
+    
+    if not conta_extrato:
+        print("\n@@@ Conta não encontrada! @@@")
+        return
+
+    print("\n================ EXTRATO ================")
+    transacoes = conta_extrato.historico.transacoes
+
+    extrato = ""
+    if not transacoes:
+        extrato = "Não foram realizadas movimentações."
+    else:
+        for transacao in transacoes:
+            extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}"
+
+    print(extrato)
+    print(f"\nSaldo:\n\tR$ {conta_extrato.saldo:.2f}")
+    print("==========================================")
 
 
-def listar_contas():
-    pass
+def listar_contas(contas):
+    for conta in contas:
+        print("=" * 100)
+        print(textwrap.dedent(str(conta)))
 
     
 
@@ -285,15 +311,17 @@ def main():
         opcao = menu()
         match opcao:
             case "d":
-                depositar(clientes=clientes_banco, contas=contas_banco, valor_deposito=150)
+                deposito = float(input("Digite o valor do deposito: "))
+                depositar(clientes=clientes_banco, contas=contas_banco, valor_deposito=deposito)
             case "s":
-                pass
+                saque = float(input("Digite o valor do saque: "))
+                sacar(clientes_banco, contas_banco, saque)
             case "e":
-                pass
+                extrato(clientes_banco)
             case "nc":
                 nova_conta(contas=contas_banco, clientes=clientes_banco)
             case "lc":
-                pass
+                listar_contas(contas_banco)
             case "nu":
                 novo_usuario(clientes=clientes_banco)
             case "q":
