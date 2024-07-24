@@ -44,7 +44,7 @@ print(inspetor_engine.has_table("user_account"))
 # quando não definimos o nome do nosso esquema(banco de dados) por default ele se chamará "main"
 print(inspetor_engine.default_schema_name)
 
-# Criação da tabela no banco de dados
+# Criação do esquema no banco de dados
 Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)  # faz a conexão com o banco de dados
