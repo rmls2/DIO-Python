@@ -9,4 +9,25 @@
 # print(x)
 
 # verifica se uma string pode ser convetida para um número
-print('a'.isdigit())
+# print('a'.isdigit())
+
+# def meu_decorador(funct):
+#     def func_envelope(*args, **kwargs):
+#         print("antes da alteração")
+#         x = funct(*args, **kwargs)
+#         print("depois da alteração")
+#         return x
+#
+#     return func_envelope
+#
+#
+# @meu_decorador
+# def ola_mundo(nome):
+#     print(f"Ola, mundo doido de {nome}")
+#     return nome.upper()
+#
+#
+# print(ola_mundo('robert'))
+l = []
+if l is []:
+    print('ola')

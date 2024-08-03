@@ -1,6 +1,6 @@
 class IteradorHttp():
     def __init__(self):
-        self.registro = open('./iteradores/acessos.log','r')
+        self.registro = open('acessos.log', 'r')
         self.linha_atual = ''
 
     def __iter__(self):
